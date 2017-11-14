@@ -154,13 +154,20 @@ tbBody.appendChild(tr);
 
 }
 
+	tbBody.appendChild(tr);	
+	miTabla.appendChild(tbBody);
+	miCapa = document.getElementById('resultado');
+
+
+this.show = function(){
+
+	
+	miCapa.appendChild(miTabla);
+
+}
 
 
 
 
-tbBody.appendChild(tr);	
-miTabla.appendChild(tbBody);
-miCapa = document.getElementById('resultado');
-miCapa.appendChild(miTabla);
 }
 
