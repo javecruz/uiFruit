@@ -40,15 +40,34 @@ function minus3(o){
 
 function Fruta(n,c){
 	this.nombre=n;
-	this.cantidad=c;	
-}
-
-function uiFruta(id){
-
-	this.id=id;
+	this.cantidad=c;
+	this.ui = new uiFruta(c);	
 
 
 }
+
+function uiFruta(cantidad){
+
+	this.input = document.createElement("input");
+	this.input.setAttribute("value",cantidad);
+	this.imgAdd = document.createElement("img");
+	this.imgRemove = document.createElement("img");
+	this.imgAdd.setImage = setImage;
+	this.imgAdd.setImage("1382562167_1.png")
+	this.imgRemove.setImage = setImage;
+	this.imgRemove.setImage("1382562185_2.png")
+	
+
+
+	function setImage(ruta){
+		this.setAttribute("src",ruta);
+
+	}
+
+
+}
+
+
 
 
 function crearArray(){
@@ -81,8 +100,7 @@ tr = document.createElement("tr");
 td1 = document.createElement("td");
 td2 = document.createElement("td");
 td3 = document.createElement("td");
-input1 = document.createElement("input");
-input1.setAttribute("value",frutas[i].cantidad);
+
 
 	
 // atributos para la primera celda
@@ -94,18 +112,12 @@ td1.innerHTML = frutas[i].nombre;
 
 
 //boton1
-img1 = document.createElement("img");	
-img1.src = "1382562167_1.png";
+/*img1 = document.createElement("img");	
+img1.src = "1382562167_1.png";*/
 
 
 
-
-
-
-
-
-
-img1.addEventListener('click', (function(x){
+frutas[i].ui.imgAdd.addEventListener('click', (function(x){
 
 
 	return function(){
@@ -114,18 +126,20 @@ img1.addEventListener('click', (function(x){
 
 
 
-})(input1))
+})(frutas[i].ui.input))
 
 
 
 
 //boton2 DE LA OTRA FORMA
-img2 = document.createElement("img");	
-img2.src = "1382562185_2.png";
+/*img2 = document.createElement("img");	
+img2.src = "1382562185_2.png";*/
 
-img2.addEventListener('click', function(){
 
-		var pepe = input1;
+
+frutas[i].ui.imgRemove.addEventListener('click', function(){
+
+		var pepe = frutas[i].ui.input;
 
 		var luisa = function(){
 
@@ -140,9 +154,9 @@ img2.addEventListener('click', function(){
 
 
 
-td2.appendChild(input1);
-td3.appendChild(img1);
-td3.appendChild(img2);
+td2.appendChild(frutas[i].ui.input);
+td3.appendChild(frutas[i].ui.imgAdd);
+td3.appendChild(frutas[i].ui.imgRemove);
 tr.appendChild(td1);
 tr.appendChild(td2);
 tr.appendChild(td3);
