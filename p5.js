@@ -56,7 +56,37 @@ function uiFruta(cantidad){
 	this.imgAdd.setImage("1382562167_1.png")
 	this.imgRemove.setImage = setImage;
 	this.imgRemove.setImage("1382562185_2.png")
-	
+
+	// 1 closure
+	var javi = this.input;
+
+	this.imgAdd.addEventListener("click",function(){
+
+		var loli = javi;
+		var jeje = function(){
+
+			loli.value++;
+
+		}
+		return jeje;
+
+	}())	
+
+
+	//2 closure
+
+
+	this.imgRemove.addEventListener("click",(function(macarena){
+
+		return function(){
+
+			macarena.value--;
+
+		}
+
+
+
+	})(this.input))
 
 
 	function setImage(ruta){
@@ -111,46 +141,6 @@ td2.setAttribute("width", "100px");
 td1.innerHTML = frutas[i].nombre;	
 
 
-//boton1
-/*img1 = document.createElement("img");	
-img1.src = "1382562167_1.png";*/
-
-
-
-frutas[i].ui.imgAdd.addEventListener('click', (function(x){
-
-
-	return function(){
-		x.value++;
-	}
-
-
-
-})(frutas[i].ui.input))
-
-
-
-
-//boton2 DE LA OTRA FORMA
-/*img2 = document.createElement("img");	
-img2.src = "1382562185_2.png";*/
-
-
-
-frutas[i].ui.imgRemove.addEventListener('click', function(){
-
-		var pepe = frutas[i].ui.input;
-
-		var luisa = function(){
-
-			pepe.value--;
-
-		}
-
-		return luisa;
-		
-
-}())
 
 
 
