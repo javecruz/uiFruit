@@ -58,7 +58,8 @@ function uiFruta(cantidad){
 	this.imgRemove.setImage("1382562185_2.png")
 
 	// 1 closure
-	var javi = this.input;
+
+	javi = this.input;
 
 	this.imgAdd.addEventListener("click",function(){
 
@@ -154,7 +155,6 @@ tbBody.appendChild(tr);
 
 }
 
-	tbBody.appendChild(tr);	
 	miTabla.appendChild(tbBody);
 	miCapa = document.getElementById('resultado');
 
