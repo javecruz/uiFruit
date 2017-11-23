@@ -15,99 +15,37 @@
 		<meta name="viewport" content="width=device-width initial-scale=1.0">
 
 		<!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
-		<link rel="shortcut icon" href="/favicon.ico">
 		<link rel="apple-touch-icon" href="/apple-touch-icon.png">
-		<script src="p5.js"></script>
+		
 	</head>
 
 	<body>
 		<div>
 			
 
-			<div>
-				<p> Primera forma</p>
-				<table border="0">
-
-					<tr>
-						<td><input type="text" id="cantidad" size="10" /> </td>
-						<td><img src="1382562167_1.png" onclick="add();"><img src="1382562185_2.png" onclick="minus();"/></td>
-					</tr>
-
-				</table>
-			</div>
-
-
-
-
-			<div>
-
-				<p> Segunda forma</p>
-				<table border="0">
-					<tr>
-						<td><input type="text" id="cantidad2" size="10" /> </td>
-						<td><img src="1382562167_1.png" onclick="add2(document.getElementById('cantidad2').value);"><img src="1382562185_2.png" onclick="minus2(document.getElementById('cantidad2').value);"/></td>
-					</tr>
-				</table>
-
-			</div>
-
-
-
-
-
-			<div>
-				<p> Tercera forma</p>
-				<table border="0"><tr><td><input type="text" id="cantidad3" size="10" /> </td><td><img src="1382562167_1.png" onclick="add3(document.getElementById('cantidad3'));"><img src="1382562185_2.png" onclick="minus3(document.getElementById('cantidad3'));"/></td></tr></table>
-			</div>
-
-
-
-
-
-			<div>
-				<p> Tabla con muchas filas (por cada fila hay que crear un identificador)</p>
-				<table border="0">
-					<tr>
-						<td><span id="l1">Calabazas</span><input type="text" id="cantidad4" size="10" /> </td>
-						<td><img src="1382562167_1.png" onclick="add3(document.getElementById('cantidad4'));"><img src="1382562185_2.png" onclick="minus3(document.getElementById('cantidad4'));"/></td>
-					</tr>
-					<tr>
-						<td><span id="l2">Sandias</span><input type="text" id="cantidad5" size="10" /> </td>
-						<td><img src="1382562167_1.png" onclick="add3(document.getElementById('cantidad5'));"><img src="1382562185_2.png" onclick="minus3(document.getElementById('cantidad5'));"/></td>
-					</tr>
-					<tr>
-						<td><span id="l3">Lechugas</span><input type="text" id="cantidad6" size="10" /> </td>
-						<td><img src="1382562167_1.png" onclick="add3(document.getElementById('cantidad6'));"><img src="1382562185_2.png" onclick="minus3(document.getElementById('cantidad6'));"/></td>
-					</tr>
-					<tr>
-						<td><span id="l4">Melones</span><input type="text" id="cantidad7" size="10" /> </td>
-						<td><img src="1382562167_1.png" onclick="add3(document.getElementById('cantidad7'));"><img src="1382562185_2.png" onclick="minus3(document.getElementById('cantidad7'));"/></td>
-					</tr>
-				</table>
-			</div>
-
-
-
-
-
-
-
-
-
-
-
 			<div id="resultado">
 				<p> Tabla construida con javascript</p>
-				<script> 
-				
-				t=new MiTabla(crearArray());
-				t.show();
-							
-				</script>
+
+			
 			</div>
+
+			<div>
+			<table border="1">
+			<tr>
+				<td>Total</td>
+				<td><input type="text" readonly="true" id="total"></td>
+				<td><input type="submit" value="addNewFruit" id="addFruit"></td>
+
+			</tr>
+			</table>
+
+			</div>
+
+			<script src="p5.js"></script>
+
 			<footer>
 				<p>
-					&copy; Copyright  by Prof020
+					&copy; Copyright  by Javier Velando Cruz
 				</p>
 			</footer>
 		</div>
