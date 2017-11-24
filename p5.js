@@ -30,9 +30,7 @@ function uiFruta(_fruta){
 	this.imgEdit.setImage("editar.png");
 	this.imgEdit.setAttribute("width",16)
 	this.imgEdit.setAttribute("heigth",16)
-	this.imgEliminate = document.createElement("img");
-	this.imgEliminate.setImage = setImage;
-	this.imgEliminate.setImage("1382562185_2.png");
+	"1382562185_2.png"
 
 
 	// 1 closure
@@ -136,7 +134,7 @@ function uiFruta(_fruta){
 
 	//QUEDA AKI
 	// closure boton eliminar
-	var frutaClosure = _fruta;
+	/*var frutaClosure = _fruta;
 
 	this.imgEliminate.addEventListener("click",function(){
 
@@ -173,7 +171,7 @@ function uiFruta(_fruta){
 
 
 
-	})
+	})*/
 
 
 
@@ -236,12 +234,56 @@ td2.appendChild(frutas[i].ui.input);
 td3.appendChild(frutas[i].ui.imgAdd);
 td3.appendChild(frutas[i].ui.imgRemove);
 td4.appendChild(frutas[i].ui.imgEdit)
-td4.appendChild(frutas[i].ui.imgEliminate)
+
+//creo el boton de borrar EN LA TABLA
+
+var borrarImg = document.createElement("img");
+borrarImg.setAttribute("src","1382562185_2.png")
+td4.appendChild(borrarImg)
 tr.appendChild(td1);
 tr.appendChild(td2);
 tr.appendChild(td3);
 tr.appendChild(td4);
 tbBody.appendChild(tr);	
+
+
+
+//creo el closure para el eliminar DENTRO DE LA TABLA
+
+
+borrarImg.addEventListener("click",function(){
+
+	var frutaClosure = frutas[i];
+	var trClosure = tr;
+	var flag = false;
+	
+	return function(){
+
+		//borro la fruta del array
+		for(var i=0;i<frutas.length && !flag;i++){
+
+			if(frutas[i].nombre == frutaClosure.nombre){
+
+				frutas.splice(i,1);
+				flag = true;
+			}
+
+
+
+		}
+
+		console.log(frutas)
+
+
+		//borro la row de la tabla
+		trClosure.remove();
+
+	}
+	
+
+}())
+
+
 
 }
 
@@ -304,7 +346,7 @@ document.getElementById("addFruit").addEventListener("click",function(){
 			td2.appendChild(fruta.ui.imgAdd);
 			td2.appendChild(fruta.ui.imgRemove);
 			td3.appendChild(fruta.ui.imgEdit);
-			td3.appendChild(fruta.ui.imgEliminate);
+			
 
 			//la meto en el array
 
