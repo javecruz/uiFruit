@@ -6,15 +6,18 @@
 function Fruta(n,c){
 	this.nombre=n;
 	this.cantidad=c;
-	this.ui = new uiFruta(c);	
+
+	var _fruta = this;
+
+	this.ui = new uiFruta(_fruta);	
 
 
 }
 
-function uiFruta(cantidad){
+function uiFruta(_fruta){
 
 	this.input = document.createElement("input");
-	this.input.setAttribute("value",cantidad);
+	this.input.setAttribute("value",_fruta.cantidad);
 	this.input.setAttribute("readonly",1);
 	this.imgAdd = document.createElement("img");
 	this.imgRemove = document.createElement("img");
@@ -34,7 +37,7 @@ function uiFruta(cantidad){
 
 	// 1 closure
 
-	javi = this.input;
+	var javi = this.input;
 
 	this.imgAdd.addEventListener("click",function(){
 
@@ -89,10 +92,39 @@ function uiFruta(cantidad){
 			y.appendChild(input);
 
 
-			// y ahora? xd AQUIIIIIIIIIIIIIIII
+			// y ahora creo el boton aceptar
+
+			var botonConfirmar = document.createElement("input");
+			botonConfirmar.setAttribute("type","button");
+			botonConfirmar.setAttribute("value","Confirmar Modificacion");
+			miTabla.appendChild(botonConfirmar);
+
+			var cantidadPrevia = _fruta.ui.input.value;
+				// evento de boton confirmar
+				botonConfirmar.addEventListener("click",function(){
+
+					//console.log(input.value) // el nombre
+					//console.log(_fruta.ui.input.value) // la cantidad
+
+
+					// modifico el array
+					_fruta.nombre = input.value;
+					_fruta.cantidad = _fruta.ui.input.value * 1; // sino parseo, lo mete en string......<3 js
+
+					// elimino el input del nombre y lo pongo con innerHTML, admeás activo el readonly del input de cantidad
+					var td = input.parentNode;
+					td.innerHTML = _fruta.nombre;
+					input.remove();
+					_fruta.ui.input.setAttribute("readonly",true);
 
 
 
+
+					// actualiza el boton total sin llammar al método de esta forma ahorro costé ya que no recorre todo el array
+					document.getElementById("total").value = document.getElementById("total").value - (cantidadPrevia*1) + (_fruta.ui.input.value*1);
+					botonConfirmar.remove();
+
+				})
 			
 
 
@@ -100,6 +132,32 @@ function uiFruta(cantidad){
 		}
 
 	}())
+
+
+	//QUEDA AKI
+	// closure boton eliminar
+	var frutaClosure = this._fruta;
+
+	this.imgEliminate.addEventListener("click",function(){
+
+
+		var fruta = frutaClosure;
+
+		//elimino del array primero
+
+		var index = frutas.indexOf(fruta);
+
+		console.log(index);
+
+
+
+
+
+
+
+
+
+	})
 
 
 
@@ -183,6 +241,74 @@ this.show = function(){
 	miCapa.appendChild(miTabla);
 
 }
+
+
+//añadir fruta
+document.getElementById("addFruit").addEventListener("click",function(){
+
+
+	var tr = document.createElement("tr");
+	var td0 = document.createElement("td");
+	var td1 = document.createElement("td");
+	var td2 = document.createElement("td");
+	var td3 = document.createElement("td");
+
+	var inputName = document.createElement("input");
+	var inputCantidad = document.createElement("input");
+
+	td0.appendChild(inputName);
+	td1.appendChild(inputCantidad);
+	tr.appendChild(td0);
+	tr.appendChild(td1);
+	tr.appendChild(td2);
+	tr.appendChild(td3);
+
+	miTabla.appendChild(tr);
+
+	// creo boton confirmar
+
+	var confirmar = document.createElement("input");
+	confirmar.setAttribute("type","button");
+	confirmar.setAttribute("value","Confirmar Nueva Fruta")
+
+	miTabla.appendChild(confirmar);
+
+
+		confirmar.addEventListener("click", function(){
+
+			//creo fruta
+			fruta = new Fruta(inputName.value+"",inputCantidad.value *1)
+			//quito inputs de añadir nueva
+			inputName.remove();
+			inputCantidad.remove();
+
+			//meto una row de la nueva fruta
+			td0.innerHTML = fruta.nombre;
+			td1.appendChild(fruta.ui.input);
+			td2.appendChild(fruta.ui.imgAdd);
+			td2.appendChild(fruta.ui.imgRemove);
+			td3.appendChild(fruta.ui.imgEdit);
+			td3.appendChild(fruta.ui.imgEliminate);
+
+			//la meto en el array
+
+			frutas.push(fruta);
+
+			//actualizo canntidad
+			document.getElementById("total").value = (document.getElementById("total").value*1) + (fruta.ui.input.value*1);
+
+
+			confirmar.remove();
+
+		})
+
+
+
+
+})
+
+
+
 
 }
 
