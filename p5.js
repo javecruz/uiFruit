@@ -272,16 +272,16 @@ borrarImg.addEventListener("click",function(){
 
 		}
 
-		console.log(frutas)
-
-
 		//borro la row de la tabla
 		trClosure.remove();
+
+		calculaTotal(frutas);
 
 	}
 	
 
 }())
+
 
 
 
@@ -346,6 +346,47 @@ document.getElementById("addFruit").addEventListener("click",function(){
 			td2.appendChild(fruta.ui.imgAdd);
 			td2.appendChild(fruta.ui.imgRemove);
 			td3.appendChild(fruta.ui.imgEdit);
+
+			//meto la imagen de eliminar....
+
+			var imgEliminar = document.createElement("img");
+			imgEliminar.setAttribute("src","1382562185_2.png")
+
+
+
+			imgEliminar.addEventListener("click",function(){
+
+				// lo sé, deberia hacer un método,  este trozo está duplicado...
+				var frutaClos = fruta;
+				var trClos = tr;
+				var flag = false;
+				return function(){
+					
+					for(var i=0;i<frutas.length && !flag;i++){
+
+						if(frutas[i].nombre == frutaClos.nombre){
+
+							frutas.splice(i,1);
+							flag = true;
+							}
+
+ 
+
+						}
+
+							//borro la row de la tabla
+							trClos.remove();
+
+							calculaTotal(frutas);
+
+
+
+				}
+
+
+			}())
+
+			td3.appendChild(imgEliminar);
 			
 
 			//la meto en el array
