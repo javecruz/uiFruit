@@ -136,7 +136,7 @@ function uiFruta(_fruta){
 
 	//QUEDA AKI
 	// closure boton eliminar
-	var frutaClosure = this._fruta;
+	var frutaClosure = _fruta;
 
 	this.imgEliminate.addEventListener("click",function(){
 
@@ -144,10 +144,26 @@ function uiFruta(_fruta){
 		var fruta = frutaClosure;
 
 		//elimino del array primero
+		var flag = false;
 
-		var index = frutas.indexOf(fruta);
+		for(var i = 0;i<frutas.length && !flag;i++){
 
-		console.log(index);
+			if(fruta.nombre === frutas[i].nombre){
+
+				frutas.splice(i,1);
+				flag = true;
+			}
+
+
+
+		}
+
+		//ahora elimino el tr
+
+
+		this.closest("tr").remove();
+
+		calculaTotal(frutas);
 
 
 
