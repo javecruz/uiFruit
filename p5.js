@@ -35,18 +35,18 @@ function uiFruta(_fruta){
 
 	// 1 closure
 
-	var javi = this.input;
+	var _input = this.input;
 
 	this.imgAdd.addEventListener("click",function(){
 
-		var loli = javi;
-		var jeje = function(){
+		var __input = _input;
+		var imgAddClosure = function(){
 
-			loli.value++;
+			__input.value++;
 			document.getElementById("total").value++
 
 		}
-		return jeje;
+		return imgAddClosure;
 
 	}())	
 
@@ -54,11 +54,11 @@ function uiFruta(_fruta){
 	//2 closure
 
 
-	this.imgRemove.addEventListener("click",(function(macarena){
+	this.imgRemove.addEventListener("click",(function(__input){
 
 		return function(){
 
-			macarena.value--;
+			__input.value--;
 			document.getElementById("total").value--;
 		}
 
@@ -71,23 +71,23 @@ function uiFruta(_fruta){
 
 	this.imgEdit.addEventListener("click",function(){
 
-		var loli = javi;
+		var __input = _input;
 
 		return function(){
 			
-			loli.removeAttribute("readonly")
-			var x = loli.parentNode;
+			__input.removeAttribute("readonly")
+			var inputParent = __input.parentNode;
 
 			// y es el td donde está el name de la fruta
-			var y = x.previousSibling;
+			var tdName = inputParent.previousSibling;
 
 			// primero lo pongo en blanco
-			y.innerHTML = "";
+			tdName.innerHTML = "";
 
 			//añado un boton a ese td...
 
 			var input = document.createElement("input");
-			y.appendChild(input);
+			tdName.appendChild(input);
 
 
 			// y ahora creo el boton aceptar
@@ -107,8 +107,7 @@ function uiFruta(_fruta){
 
 					// modifico el array
 					_fruta.nombre = input.value;
-					_fruta.cantidad = _fruta.ui.input.value * 1; // sino parseo, lo mete en string......<3 js
-
+					_fruta.cantidad = _fruta.ui.input.value * 1; // sino parseo, lo mete en string....
 					// elimino el input del nombre y lo pongo con innerHTML, admeás activo el readonly del input de cantidad
 					var td = input.parentNode;
 					td.innerHTML = _fruta.nombre;
@@ -132,48 +131,6 @@ function uiFruta(_fruta){
 	}())
 
 
-	//QUEDA AKI
-	// closure boton eliminar
-	/*var frutaClosure = _fruta;
-
-	this.imgEliminate.addEventListener("click",function(){
-
-
-		var fruta = frutaClosure;
-
-		//elimino del array primero
-		var flag = false;
-
-		for(var i = 0;i<frutas.length && !flag;i++){
-
-			if(fruta.nombre === frutas[i].nombre){
-
-				frutas.splice(i,1);
-				flag = true;
-			}
-
-
-
-		}
-
-		//ahora elimino el tr
-
-
-		this.closest("tr").remove();
-
-		calculaTotal(frutas);
-
-
-
-
-
-
-
-
-
-	})*/
-
-
 
 	function setImage(ruta){
 		this.setAttribute("src",ruta);
@@ -186,7 +143,7 @@ function uiFruta(_fruta){
 
 
 
-function crearArray(){
+function createArrayFruit(){
 
 	var frutas = [];
 
@@ -356,7 +313,6 @@ document.getElementById("addFruit").addEventListener("click",function(){
 
 			imgEliminar.addEventListener("click",function(){
 
-				// lo sé, deberia hacer un método,  este trozo está duplicado...
 				var frutaClos = fruta;
 				var trClos = tr;
 				var flag = false;
@@ -427,10 +383,10 @@ function calculaTotal(frutas){
 }
 
 	
-frutas = crearArray();
-t=new MiTabla(frutas);
+frutero = createArrayFruit();
+t=new MiTabla(frutero);
 t.show();
-calculaTotal(frutas);
+calculaTotal(frutero);
 
 
 				
